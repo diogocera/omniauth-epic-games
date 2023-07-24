@@ -14,7 +14,7 @@ module OmniAuth
 
       option :authorize_options, %i[scope permissions prompt]
 
-      uid { debugger;raw_info['accountId'] }
+      uid { raw_info['accountId'] }
 
       info do
         {
