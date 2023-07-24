@@ -1,0 +1,7 @@
+source 'https://rubygems.org'
+
+gem 'sinatra'
+gem 'sinatra-reloader'
+gem 'omniauth-epic-games', path: '../'
+gem 'puma'
+gem 'pry'
