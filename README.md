@@ -20,7 +20,7 @@ OmniAuth EPIC Games is a Rack middleware. If you're not familiar with OmniAuth, 
 
 ```ruby
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :epic, ENV['EPIC_CLIENT_ID'], ENV['EPIC_CLIENT_SECRET']
+  provider :epic_games, ENV['EPIC_CLIENT_ID'], ENV['EPIC_CLIENT_SECRET']
 end
 ```
 
@@ -28,7 +28,7 @@ By default, EPIC Games does not return a user's email address. You can request a
 
 ```ruby
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :epic, ENV['EPIC_CLIENT_ID'], ENV['EPIC_CLIENT_SECRET'], scope: 'email'
+  provider :epic_games, ENV['EPIC_CLIENT_ID'], ENV['EPIC_CLIENT_SECRET'], scope: 'basic_profile'
 end
 ```
 
@@ -37,7 +37,7 @@ You can pass multiple scopes in the same string. For example, to get a user's EP
 
 ```ruby
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :epic, ENV['EPIC_CLIENT_ID'], ENV['EPIC_CLIENT_SECRET'], scope: 'email identify'
+  provider :epic_games, ENV['EPIC_CLIENT_ID'], ENV['EPIC_CLIENT_SECRET'], scope: 'basic_profile'
 end
 ```
 
@@ -46,22 +46,9 @@ You can also specify a callback URL by adding callback_url to the provider optio
 
 ```ruby
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :epic, ENV['EPIC_CLIENT_ID'], ENV['EPIC_CLIENT_SECRET'], scope: 'email identify', callback_url: 'https://someurl.com/users/auth/epic/callback'
+  provider :epic_games, ENV['EPIC_CLIENT_ID'], ENV['EPIC_CLIENT_SECRET'], scope: 'basic_profile', callback_url: 'https://someurl.com/users/auth/epic_games/callback'
 end
 ```
-
-## Additional Permissions
-
-You can request additional permissions from the user by setting the permissions option. For example, to request permission to the MANAGE_CHANNELS and MANAGE_ROLES permissions, you would set permissions to 0x00000010 + 0x10000000.
-
-```ruby
-Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :epic, ENV['EPIC_CLIENT_ID'], ENV['EPIC_CLIENT_SECRET'], scope: 'identify  bot', permissions: 0x00000010 + 0x10000000
-end
-```
-
-This will request permission to the MANAGE_CHANNELS and the MANAGE_ROLES
-permissions.
 
 ## Prompt Options
 
